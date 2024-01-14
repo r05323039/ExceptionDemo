@@ -2,7 +2,6 @@ package ian.exceptiondemo.service;
 
 
 import ian.exceptiondemo.exception.BookNotFoundException;
-import ian.exceptiondemo.exception.BookRepositoryException;
 import ian.exceptiondemo.pojo.Book;
 import ian.exceptiondemo.repository.BookDao;
 import lombok.extern.slf4j.Slf4j;
@@ -20,11 +19,8 @@ public class BookService {
     }
 
     public List<Book> findbooks() throws BookNotFoundException {
-        try {
-            List<Book> books = bookDao.findAll();
-            return books;
-        } catch (BookRepositoryException e) {
-            throw new BookNotFoundException(e);
-        }
+        // 可以拋出BookNotFoundException或是catch 返回空陣列
+        List<Book> books = bookDao.findAll();
+        return books;
     }
 }
